@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  # ─────────────────────────────────────────────────────────────────────────
+  # Enterprise ITSM Graph RAG Demo — Single Container
+  #
+  # Contains:
+  #   - FastAPI backend (uvicorn, internal port 8000)
+  #   - Carbon React frontend (nginx, external port 9000)
+  #   - supervisord managing both processes
+  #
+  # nginx proxies /api/* → uvicorn internally
+  # Access the app at: http://localhost:9000
+  # ─────────────────────────────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_URL=/api
+    container_name: enterprise-itsm-graph-rag
+    ports:
+      - "9000:9000"
+    env_file:
+      - .env
+    environment:
+      - ASTRA_DB_KEYSPACE=${ASTRA_DB_KEYSPACE:-graphCollection}
+      - ASTRA_DB_COLLECTION=${ASTRA_DB_COLLECTION:-itsm_documents}
+      - EMBEDDING_MODEL_ID=${EMBEDDING_MODEL_ID:-intfloat/multilingual-e5-large}
+      - LLM_MODEL_ID=${LLM_MODEL_ID:-ibm/granite-3-8b-instruct}
+      - WATSONX_URL=${WATSONX_URL:-https://us-south.ml.cloud.ibm.com}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+# Made with Bob

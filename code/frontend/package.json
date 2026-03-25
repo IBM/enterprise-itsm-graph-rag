@@ -1,0 +1,41 @@
+{
+  "name": "enterprise-itsm-graph-rag-ui",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@carbon/charts": "^1.21.0",
+    "@carbon/charts-react": "^1.21.0",
+    "@carbon/icons-react": "^11.46.0",
+    "@carbon/react": "^1.71.0",
+    "axios": "^1.7.7",
+    "d3": "^7.9.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:8000"
+}

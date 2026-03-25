@@ -1,0 +1,61 @@
+# Node modules (rebuilt during Docker build)
+frontend/node_modules
+frontend/build
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Python virtual environments
+backend/__pycache__
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/env/
+backend/venv/
+backend/.venv/
+backend/*.egg-info/
+backend/dist/
+backend/.pytest_cache/
+
+# Environment files (passed via docker run --env-file)
+.env
+.env.local
+**/.env
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation (not needed in container)
+*.md
+graph-rag-bfs-astradb-watsonx.md
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+**/__tests__/
+**/*.test.js
+**/*.spec.js
+**/coverage/
+
+# Docker files (not needed inside container)
+Dockerfile
+docker-compose.yml
+.dockerignore
+# NOTE: nginx-combined.conf and supervisord.conf ARE needed — do NOT exclude them
